@@ -48,3 +48,23 @@ export const changeStatus = async (formData: FormData) => {
   //Return trạng thái của todo
   return updateStatus;
 };
+
+//Hàm chỉnh sửa Todo
+export const editTodo = async (formData: FormData) => {
+  //Lấy giá trị của title từ input
+  const input = formData.get('newInput') as string;
+  if (!input) return;
+
+  //Lấy giá trị của id từ input
+  const inputId = formData.get('inputId') as string;
+  if (!inputId) return;
+
+  //Update lại title của todo
+  await prisma.todo.update({
+    where: { id: inputId },
+    data: { title: input },
+  });
+
+  //Revalidate lại trang
+  revalidatePath('/');
+};
