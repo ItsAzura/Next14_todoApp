@@ -1,0 +1,15 @@
+.container {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.form {
+  width: 50%;
+  display: flex;
+  margin: auto;
+}
+
+.item {
+  width: 100%;
+}
