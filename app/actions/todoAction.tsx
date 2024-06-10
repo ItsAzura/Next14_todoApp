@@ -20,3 +20,31 @@ export const createTodo = async (formData: FormData) => {
 
   revalidatePath('/'); //Revalidate lại trang
 };
+
+//Hàm thay đổi trạng thái của Todo
+export const changeStatus = async (formData: FormData) => {
+  //Lấy giá trị từ input
+  const inputId = formData.get('inputId') as string;
+  if (!inputId) return;
+
+  //Tìm todo theo id
+  const todo = await prisma.todo.findUnique({
+    where: { id: inputId },
+  });
+  if (!todo) return;
+
+  //Cập nhật trạng thái của todo
+  const updateStatus = !todo.isCompleted;
+
+  //Update trạng thái của todo
+  await prisma.todo.update({
+    where: { id: inputId },
+    data: { isCompleted: updateStatus },
+  });
+
+  //Revalidate lại trang
+  revalidatePath('/');
+
+  //Return trạng thái của todo
+  return updateStatus;
+};
