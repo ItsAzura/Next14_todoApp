@@ -68,3 +68,17 @@ export const editTodo = async (formData: FormData) => {
   //Revalidate lại trang
   revalidatePath('/');
 };
+
+//Hàm xóa Todo
+export const deleteTodo = async (formData: FormData) => {
+  const inputId = formData.get('inputId') as string;
+  if (!inputId) return;
+
+  //Xóa todo theo id
+  await prisma.todo.delete({
+    where: { id: inputId },
+  });
+
+  //Revalidate lại trang
+  revalidatePath('/');
+};
