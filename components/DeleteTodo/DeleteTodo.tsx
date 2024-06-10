@@ -8,6 +8,7 @@ import Input from '@/components/Input/Input';
 const DeleteTodo = ({ todo }: { todo: any }) => {
   return (
     <Form action={deleteTodo}>
+      {/* Input này hidden để truyền id của todo cần xóa */}
       <Input name="inputId" value={todo.id} type="hidden" />
       <Button text="Delete" actionButton />
     </Form>

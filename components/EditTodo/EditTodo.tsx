@@ -13,6 +13,8 @@ const EditTodo = ({ todo }: { todo: any }) => {
 
   //Hàm xử lý khi click vào nút Edit
   const handleEdit = () => {
+    //Nếu todo đã hoàn thành thì không cho chỉnh sửa
+    if (todo.isCompleted === true) return;
     setEdit(!edit);
   };
 

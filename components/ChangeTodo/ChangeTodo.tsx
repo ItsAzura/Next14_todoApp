@@ -9,6 +9,7 @@ const ChangeTodo = ({ todo }: { todo: any }) => {
     <Form
       action={changeStatus} //Gọi hàm changeStatus từ actions/todoAction khi form submit
     >
+      {/* Truyền id của todo vào input để gửi lên server */}
       <Input
         name="inputId"
         type="hidden"
