@@ -3,6 +3,7 @@ import AddTodo from '@/components/AddTodo/AddTodo';
 import styles from './Home.module.css';
 import { prisma } from '@/utils/prisma';
 import Todo from '@/components/Todo/Todo';
+import { NeatGradientComponent } from '@/components/NeatGradient';
 
 //Hàm lấy dữ liệu từ database sử dụng Prisma
 const getTodos = async () => {
@@ -17,16 +18,19 @@ const getTodos = async () => {
 export default async function Home() {
   const todos = await getTodos();
   return (
-    <div className={styles.container}>
-      <h1>Next14 To Do App</h1>
-      <div className={styles.main}>
-        <AddTodo />
-        <div className={styles.ItemList}>
-          {todos.map((todo, id) => (
-            <div className={styles.item} key={id}>
-              <Todo todo={todo} />
-            </div>
-          ))}
+    <div style={{ position: 'relative', height: '100vh' }}>
+      <NeatGradientComponent />
+      <div className={styles.container}>
+        <h1 data-glitch="Azura To-Do App">Azura To-Do App</h1>
+        <div className={styles.main}>
+          <AddTodo />
+          <div className={styles.ItemList}>
+            {todos.map((todo, id) => (
+              <div className={styles.item} key={id}>
+                <Todo todo={todo} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
